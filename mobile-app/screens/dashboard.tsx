@@ -176,7 +176,7 @@ export const Dashboard = ({ navigation }) => {
       {/* <JobCard /> */}
       {/* <HorizontalCard /> */}
 
-      {/* <ScrollView horizontal showsHorizontalScrollIndicator={false}>
+      <ScrollView horizontal showsHorizontalScrollIndicator={false}>
         {[
           { date: "Date-posted" },
           { date: "Distance" },
@@ -211,8 +211,8 @@ export const Dashboard = ({ navigation }) => {
             </Text>
           </View>
         ))}
-      </ScrollView> */}
-      <FilterModal/>
+      </ScrollView>
+      {/* <FilterModal/> */}
     </ScrollView>
   );
 };
