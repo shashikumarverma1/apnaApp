@@ -13,7 +13,8 @@ import Ionicons from "@expo/vector-icons/Ionicons";
 import React from "react";
 import { JobCard } from "../components/jobCard";
 import { HorizontalCard } from "../components/horizontalCard";
-import { FilterModal } from "../components/filter";
+import { FilterModal } from "../components/filterModal";
+
 export const Dashboard = ({ navigation }) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -212,7 +213,7 @@ export const Dashboard = ({ navigation }) => {
           </View>
         ))}
       </ScrollView>
-      {/* <FilterModal/> */}
+      <FilterModal/>
     </ScrollView>
   );
 };
