@@ -2,7 +2,7 @@ import { useState } from "react";
 import { TextInput, View  , Text, Pressable , StyleSheet, Dimensions} from "react-native";
 const windowWidth = Dimensions.get("window").width;
 import { ScrollView } from "react-native-gesture-handler";
-export const Login = ({ navigation }) => {
+export const Login = () => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
   

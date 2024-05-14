@@ -20,12 +20,12 @@ function DraweNavigation() {
       }}
       drawerContent={(props) => <CustomSidebarMenu {...props} />}
     >
-      {!true ? (
+      {true ? (
         <Drawer.Screen name="BottomTabs" component={BottomTabs} />
       ) : (
-        <Drawer.Screen name="Dashboard" component={Dashboard} />
+        <Drawer.Screen name="Signup" component={Signup} />
       )}
-  
+   <Drawer.Screen name="Login" component={Login} />
   
     </Drawer.Navigator>
   );
