@@ -22,15 +22,16 @@ export const JobDetailCard=({tittle , data})=>{
             padding: 15,
             margin: 5,
             width: windowWidth / 1,
+            paddingLeft:30
             // maxWidth: windowWidth / 1.07,
           }}
         >
         <Text style={styles.tittle}>{tittle}</Text>
       {
-        data.map((e)=>{
+        data.map((e , index)=>{
             console.log(e)
             return (
-                <View style={{display:"flex" , flexDirection:"row",marginBottom:5}}>
+                <View style={{display:"flex" , flexDirection:"row",marginBottom:5}} key={index}>
                 <View>
                 <Text style={{marginTop:5}}><Ionicons name={`${e.icon}`} size={20} color="grey" /></Text>
                 </View>
