@@ -8,7 +8,7 @@ import {
   Dimensions,
   Image,
 } from "react-native";
-import { Checkbox } from "react-native-paper";
+// import { Checkbox } from "react-native-paper";
 import { ScrollView } from "react-native-gesture-handler";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import React from "react";
@@ -91,11 +91,11 @@ export const FilterModal = () => {
             { date: "sort-by" },].map((e, i) => {
             return (
               <View key={i} style={{display:"flex" , flexDirection:"row" , alignItems:"center"}}>
-                <Checkbox
+                {/* <Checkbox
                   value={isSelected}
                   onValueChange={setSelection}
                   style={{ alignSelf: "center" , color:"grey" }}
-                />
+                /> */}
                 <Text style={{color:"grey" , fontWeight:"500" , fontSize:15}}>{e.date}</Text>
               </View>
             );

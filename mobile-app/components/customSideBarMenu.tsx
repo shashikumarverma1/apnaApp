@@ -7,10 +7,14 @@ import {
   Image,
   Alert,
 } from "react-native";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import { SafeAreaView } from "react-native-safe-area-context";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { ScrollView } from "react-native-gesture-handler";
 const CustomSidebarMenu = ({ navigation }: { navigation: any }) => {
+  const logout=async()=>{
+    AsyncStorage.clear()
+  }
   return (
     <SafeAreaView style={{ flex: 1 }}>
       <ScrollView>
@@ -66,6 +70,20 @@ const CustomSidebarMenu = ({ navigation }: { navigation: any }) => {
           }}
         >
           <Text style={[styles.subheading, styles.subHeadingBold]}>Profile</Text>
+        </Pressable>
+        <Pressable
+          style={styles.button}
+          onPress={
+          logout
+        }
+        >
+          <Text style={[styles.subheading, styles.subHeadingBold , {color:"red"}]}>Log-out</Text>
+        </Pressable>
+        <Pressable
+          style={styles.button}
+      onPress={()=>  navigation.navigate("JobDetails")}
+        >
+          <Text style={[styles.subheading, styles.subHeadingBold , {color:"red"}]}>JobDetails</Text>
         </Pressable>
       </ScrollView>
     </SafeAreaView>

@@ -1,3 +1,4 @@
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useNavigation } from "@react-navigation/native";
 import React, { useState } from "react";
 import {
@@ -9,26 +10,49 @@ import {
   Pressable,
   Dimensions,
 } from "react-native";
+
 import { ScrollView } from "react-native-gesture-handler";
 const windowWidth = Dimensions.get("window").width;
+const windowHeight = Dimensions.get("window").height;
 export const Signup = () => {
-  const [username, setUsername] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-
-  const handleLogin = () => {
-    // Handle login logic here
-    console.log("Username:", username);
-    console.log("Password:", password);
-  };
-
-  const handleSignup = () => {
-    // Handle signup logic here
-    console.log("Username:", username);
-    console.log("Email:", email);
-    console.log("Password:", password);
-  };
+const [useData, setUserData]=useState({
+  name:"",
+  email:"",
+  mobile:"",
+  password:""
+})
   const navigation: any = useNavigation();
+  console.log(useData , "useData")
+  const signUpHandle=async()=>{
+    await AsyncStorage.setItem('name',useData.name);
+    await AsyncStorage.setItem('email',useData.email);
+    await AsyncStorage.setItem('mobile',useData.mobile);
+    await AsyncStorage.setItem('password',useData.password);
+    navigation.navigate("Login")
+    return
+    if(!useData.name) {alert("please add name")
+      return
+    }
+    if(!useData.mobile) {alert("please add mobile") 
+      return}
+    if(!useData.email) {alert("please add email")
+      return
+    }
+    if(!useData.password){alert("please add password")
+      return
+    }
+    let name=await AsyncStorage.getItem("name")
+    console.log(name)
+    if(!name){
+  await AsyncStorage.setItem('name',useData.name);
+  await AsyncStorage.setItem('email',useData.email);
+  await AsyncStorage.setItem('mobile',useData.mobile);
+  await AsyncStorage.setItem('password',useData.password);
+    }else{
+      alert("Already user please login")
+    }
+
+  }
   return (
     <ScrollView style={{ marginHorizontal: 20 }}>
       <View style={{ marginTop: 50 }}>
@@ -63,8 +87,8 @@ export const Signup = () => {
 
         <TextInput
           style={styles.input}
-          onChangeText={setUsername}
-          value={username}
+          onChangeText={(e)=>setUserData({...useData , name:e})}
+          value={useData.name}
           placeholder="Enter your name"
         />
         <Text
@@ -81,8 +105,8 @@ export const Signup = () => {
 
         <TextInput
           style={styles.input}
-          onChangeText={setUsername}
-          value={username}
+          onChangeText={(e)=>setUserData({...useData , email:e.trim()})}
+          value={useData.email}
           placeholder="Enter your email"
         />
         <Text
@@ -99,8 +123,8 @@ export const Signup = () => {
 
         <TextInput
           style={styles.input}
-          onChangeText={setUsername}
-          value={username}
+          onChangeText={(e)=>setUserData({...useData , mobile:e})}
+          value={useData.mobile}
           placeholder="Enter your mobile no."
         />
         <Text
@@ -116,8 +140,8 @@ export const Signup = () => {
         </Text>
         <TextInput
           style={styles.input}
-          onChangeText={setPassword}
-          value={password}
+          onChangeText={(e)=>setUserData({...useData , password:e.trim()})}
+          value={useData.password}
           secureTextEntry={true}
           placeholder="Enter your password"
         />
@@ -140,10 +164,19 @@ export const Signup = () => {
               borderWidth: 1,
               borderColor: "grey",
             }}
-            // onPress={() => signUpHandle()}
+            onPress={signUpHandle}
           >
             <Text style={{ color: "#ffff", fontWeight: "800" }}>Signup</Text>
           </Pressable>
+        </View>
+        <View style={{display:"flex" , justifyContent:"center" , flexDirection:"row" , marginTop:windowHeight / 5.5}}>
+          <Text style={{color:"grey", fontSize:15 , fontWeight:"500"}}>Already have account ? </Text>
+         <Pressable onPress={()=> {
+          console.log("signin")
+          navigation.navigate("Login")
+          }}>
+         <Text style={{color:"blue" , fontSize:15 , fontWeight:"500"}}>Signin</Text>
+         </Pressable>
         </View>
       </View>
     </ScrollView>

@@ -5,6 +5,7 @@ import DrawerNavigatiom from "./drawerNavigation";
 import { Dashboard, Login, Signup } from "../screens";
 import { useNavigation } from "@react-navigation/native";
 import RootStack from "./rootStack";
+import { JobDetails } from "../components/JobDetails";
 
 // import RootStack from "./rootStack";
 const Tab = createBottomTabNavigator();
@@ -21,13 +22,13 @@ function BottomTabs() {
           if (route.name === "Job") {
             iconName = focused ? "home" : "home-outline";
           } else if (route.name === "Signup") {
-            iconName = focused ? "call" : "call-outline";
+            iconName = focused ? "wallet" : "wallet-outline";
           } else if (route.name === "Connect") {
             iconName = focused ? "newspaper" : "newspaper-outline";
           } else if (route.name === "Login") {
             iconName = focused ? "menu" : "menu-outline";
-          } else if (route.name === "Back") {
-            iconName = focused ? "arrow-back" : "arrow-back";
+          } else if (route.name === "Profile") {
+            iconName = focused ? "person-circle-outline" : "person-circle";
           }
           return <Ionicons name={iconName} size={size} color={color} />;
         },
@@ -35,7 +36,8 @@ function BottomTabs() {
         tabBarInactiveTintColor: "gray",
       })}
     >
-      <Tab.Screen name="Job" component={Dashboard} />
+      {/* <Tab.Screen name="Job" component={Dashboard} /> */}
+      <Tab.Screen name="JobDetails" component={JobDetails} />
       <Tab.Screen
         name="Login"
         component={Login}
@@ -53,7 +55,7 @@ function BottomTabs() {
        
       />
         <Tab.Screen
-        name="Back"
+        name="Profile"
         component={RootStack}
         listeners={() => ({
           tabPress: (e) => {

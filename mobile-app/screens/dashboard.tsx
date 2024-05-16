@@ -18,7 +18,7 @@ import { FilterModal } from "../components/filterModal";
 export const Dashboard = ({ navigation }) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-
+const [search , setSearch]=useState("")
   const windowWidth = Dimensions.get("window").width;
   const handleLogin = () => {
     // Handle login logic here
@@ -28,6 +28,83 @@ export const Dashboard = ({ navigation }) => {
 
   return (
     <ScrollView style={{ marginTop: 50 }}>
+      <View
+        style={{
+          display: "flex",
+          flexDirection: "row",
+          justifyContent: "space-between",
+          alignItems: "center",
+          marginHorizontal: 15,
+          // backgroundColor: "aqua",
+          padding:6, marginBottom:5
+        }}
+      >
+        <View style={{display:"flex", flexDirection:"row"}}>
+          <Text style={{fontWeight:"600" , fontSize:25}}>apna</Text>
+          <Text style={{fontWeight:"600" , fontSize:25 , color:'green'}}>Jobs</Text>
+        </View>
+        <View
+          style={{
+            display: "flex",
+            flexDirection: "row",
+            alignItems: "center",
+          }}
+        >
+          <Text>
+            {"   "}
+            <Ionicons name="help" size={18} color="black" />
+          </Text>
+          <Text>
+            {"   "}
+            <Ionicons name="chatbubble-ellipses" size={18} color="black" />
+          </Text>
+          <Text>
+            {"   "}
+            <Ionicons name="notifications" size={18} color="black" />
+          </Text>
+          {/* <ion-icon name="notifications-outline"></ion-icon> */}
+        </View>
+      </View>
+      <View
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          flexDirection: "row",
+          backgroundColor: "#f0eded",
+          marginHorizontal: 12,
+          borderRadius: 8,
+          borderWidth: 0.8,
+          borderColor: "#d9caca",
+          alignItems: "center",
+          padding: 5,
+        }}
+      >
+        <View
+          style={{
+            display: "flex",
+            flexDirection: "row",
+            // justifyContent: "space-between",
+            alignItems: "center",
+          }}
+        >
+          <View
+            style={{
+              display: "flex",
+              flexDirection: "row",
+              alignItems: "center",
+            }}
+          >
+            <Ionicons name="search-outline" size={18} color="black" />
+            <TextInput
+              style={[{ width: windowWidth / 1.3, paddingLeft: 10 }]}
+              onChangeText={(e) => setSearch(e)}
+              value={search}
+              placeholder="Enter your email"
+            />
+          </View>
+          <Ionicons name="mic-outline" size={20} color="black" />
+        </View>
+      </View>
       <View
         style={{
           display: "flex",
@@ -115,11 +192,11 @@ export const Dashboard = ({ navigation }) => {
                   display: "flex",
                   flexDirection: "row",
                   justifyContent: "space-between",
-                  maxWidth: windowWidth / 1.8,
-                  backgroundColor: "aqua",
+                  maxWidth: windowWidth / 1.9,
+                  backgroundColor: i == 0 ? "#e8faf4" : "#f5f4c4",
                   margin: 5,
                   padding: 10,
-                  borderRadius: 10,
+                  borderRadius: 12,
                 }}
               >
                 <View
@@ -201,8 +278,8 @@ export const Dashboard = ({ navigation }) => {
               margin: 5,
               paddingHorizontal: 12,
               borderColor: "grey",
-              borderWidth:.5,
-              alignItems:"center"
+              borderWidth: 0.5,
+              alignItems: "center",
             }}
           >
             <Text>{e.date}</Text>
@@ -213,7 +290,7 @@ export const Dashboard = ({ navigation }) => {
           </View>
         ))}
       </ScrollView>
-      <FilterModal/>
+      <JobCard />
     </ScrollView>
   );
 };
