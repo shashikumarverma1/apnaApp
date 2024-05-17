@@ -12,12 +12,12 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { ScrollView } from "react-native-gesture-handler";
 const CustomSidebarMenu = ({ navigation }: { navigation: any }) => {
-  const logout=async()=>{
-    AsyncStorage.clear()
-  }
+  const logout = async () => {
+    AsyncStorage.clear();
+  };
   return (
     <SafeAreaView style={{ flex: 1 }}>
-      <ScrollView>
+      <ScrollView style={{marginTop:50}}>
         <Pressable
           style={styles.button}
           onPress={() => {
@@ -25,24 +25,55 @@ const CustomSidebarMenu = ({ navigation }: { navigation: any }) => {
           }}
         >
           <Text style={[styles.subheading, styles.subHeadingBold]}>
-            Dashboard
+          Home
+          </Text>
+        </Pressable>
+
+      
+
+        <Pressable
+          style={styles.button}
+          onPress={() => {
+            console.log("profile");
+            navigation.navigate("Profile");
+          }}
+        >
+          <Text style={[styles.subheading, styles.subHeadingBold]}>
+            Profile
+          </Text>
+        </Pressable>
+        <Pressable style={styles.button} onPress={logout}>
+          <Text
+            style={[styles.subheading, styles.subHeadingBold, ]}
+          >
+            Log-out
+          </Text>
+        </Pressable>
+        <Pressable
+          style={styles.button}
+          onPress={() => navigation.navigate("JobDetails")}
+        >
+          <Text
+            style={[styles.subheading, styles.subHeadingBold,]}
+          >
+            JobDetails
           </Text>
         </Pressable>
         <Pressable
           style={styles.button}
           onPress={() => {
-            navigation.navigate("Signup");
+            navigation.navigate("MainScreen");
           }}
         >
-          <Text style={[styles.subheading, styles.subHeadingBold]}>Signup</Text>
-        </Pressable>
-        <Pressable
-          style={styles.button}
-          onPress={() => {
-            navigation.navigate("Login");
-          }}
-        >
-          <Text style={[styles.subheading, styles.subHeadingBold]}>Signin</Text>
+          <Text
+            style={[
+              styles.subheading,
+              styles.subHeadingBold,
+            
+            ]}
+          >
+            MainScreen
+          </Text>
         </Pressable>
         <Pressable
           style={styles.button}
@@ -51,39 +82,15 @@ const CustomSidebarMenu = ({ navigation }: { navigation: any }) => {
             navigation.closeDrawer();
           }}
         >
-          <Text style={[styles.subheading, styles.subHeadingBold , {color:"red",  textAlign:"right",  paddingLeft:200}]}>close</Text>
-        </Pressable>
-        
-        <Pressable
-          style={styles.button}
-          onPress={() => {
-            navigation.navigate("MainScreen");
-          }}
-        >
-          <Text style={[styles.subheading, styles.subHeadingBold , {color:"red",  textAlign:"right",  paddingLeft:150}]}>MainScreen</Text>
-        </Pressable>
-        
-        <Pressable
-          style={styles.button}
-          onPress={() => {
-            navigation.navigate("Profile");
-          }}
-        >
-          <Text style={[styles.subheading, styles.subHeadingBold]}>Profile</Text>
-        </Pressable>
-        <Pressable
-          style={styles.button}
-          onPress={
-          logout
-        }
-        >
-          <Text style={[styles.subheading, styles.subHeadingBold , {color:"red"}]}>Log-out</Text>
-        </Pressable>
-        <Pressable
-          style={styles.button}
-      onPress={()=>  navigation.navigate("JobDetails")}
-        >
-          <Text style={[styles.subheading, styles.subHeadingBold , {color:"red"}]}>JobDetails</Text>
+          <Text
+            style={[
+              styles.subheading,
+              styles.subHeadingBold,
+              { color: "red", textAlign: "right", paddingLeft: 200 },
+            ]}
+          >
+            close
+          </Text>
         </Pressable>
       </ScrollView>
     </SafeAreaView>
@@ -112,6 +119,7 @@ const styles = StyleSheet.create({
     fontWeight: "600",
     fontSize: 15,
     paddingVertical: 5,
+    paddingLeft:25
   },
   subheadingBG: {
     paddingLeft: 30,

@@ -11,6 +11,7 @@ import {
 import { ScrollView } from "react-native-gesture-handler";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import React from "react";
+import { useNavigation } from "@react-navigation/native";
 const windowWidth = Dimensions.get("window").width;
 export const JobCard = () => {
   const [username, setUsername] = useState("");
@@ -22,6 +23,7 @@ export const JobCard = () => {
     console.log("Username:", username);
     console.log("Password:", password);
   };
+  const navigation=useNavigation()
 
   return (
     <ScrollView>
@@ -36,7 +38,8 @@ export const JobCard = () => {
             }}
             key={index}
           >
-            <View
+           <Pressable onPress={()=>navigation.navigate("JobDetails")}>
+           <View
               style={{
                 backgroundColor: "#fff",
                 borderRadius: 8,
@@ -275,6 +278,7 @@ export const JobCard = () => {
                 </View>
               )}
             </View>
+           </Pressable>
           </View>
         );
       })}

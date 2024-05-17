@@ -10,7 +10,7 @@ import {
   Pressable,
   Dimensions,
 } from "react-native";
-
+import Ionicons from "@expo/vector-icons/Ionicons";
 import { ScrollView } from "react-native-gesture-handler";
 const windowWidth = Dimensions.get("window").width;
 const windowHeight = Dimensions.get("window").height;
@@ -22,6 +22,7 @@ const [useData, setUserData]=useState({
   password:""
 })
   const navigation: any = useNavigation();
+  
   console.log(useData , "useData")
   const signUpHandle=async()=>{
     await AsyncStorage.setItem('name',useData.name);
@@ -56,6 +57,11 @@ const [useData, setUserData]=useState({
   return (
     <ScrollView style={{ marginHorizontal: 20 }}>
       <View style={{ marginTop: 50 }}>
+      <Pressable onPress={()=>navigation.goBack()}>
+          <Text style={{ paddingTop: 20 }}>
+            <Ionicons name="arrow-back-outline" size={23} />
+          </Text>
+        </Pressable>
         <View style={{ marginBottom: 45 }}>
           <Text style={{ marginTop: 50, fontWeight: "800", fontSize: 30 }}>
             Sign up

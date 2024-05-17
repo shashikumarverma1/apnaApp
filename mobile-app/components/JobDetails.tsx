@@ -61,9 +61,9 @@ export const JobDetails = () => {
                 }}
               >
                 <Text>
-                  <Ionicons name="logo-whatsapp" size={20} color="grey" />
+                  <Ionicons name="logo-whatsapp" size={18} color="#f7f7f0" />
                 </Text>
-                <Text> Share </Text>
+                <Text style={{color:"#f7f7f0" , fontSize:15}}> Share </Text>
               </View>
               {/* <ion-icon name="ellipsis-vertical-outline"></ion-icon> */}
               <Text>

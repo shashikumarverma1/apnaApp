@@ -6,6 +6,7 @@ import { Dashboard, Login, Signup } from "../screens";
 import { useNavigation } from "@react-navigation/native";
 import RootStack from "./rootStack";
 import { JobDetails } from "../components/JobDetails";
+import { Profile } from "../screens/profile";
 
 // import RootStack from "./rootStack";
 const Tab = createBottomTabNavigator();
@@ -21,11 +22,11 @@ function BottomTabs() {
           let iconName;
           if (route.name === "Job") {
             iconName = focused ? "home" : "home-outline";
-          } else if (route.name === "Signup") {
-            iconName = focused ? "wallet" : "wallet-outline";
+          } else if (route.name === "Back") {
+            iconName = focused ? "arrow-back" : "arrow-back-outline";
           } else if (route.name === "Connect") {
             iconName = focused ? "newspaper" : "newspaper-outline";
-          } else if (route.name === "Login") {
+          } else if (route.name === "Menu") {
             iconName = focused ? "menu" : "menu-outline";
           } else if (route.name === "Profile") {
             iconName = focused ? "person-circle-outline" : "person-circle";
@@ -36,11 +37,11 @@ function BottomTabs() {
         tabBarInactiveTintColor: "gray",
       })}
     >
-      {/* <Tab.Screen name="Job" component={Dashboard} /> */}
-      <Tab.Screen name="JobDetails" component={JobDetails} />
+      <Tab.Screen name="Job" component={Dashboard} />
+      {/* <Tab.Screen name="JobDetails" component={JobDetails} /> */}
       <Tab.Screen
-        name="Login"
-        component={Login}
+        name="Menu"
+        component={Dashboard}
       listeners={() => ({
           tabPress: (e) => {
        e.preventDefault();
@@ -49,20 +50,21 @@ function BottomTabs() {
        })
    }
       />
-      <Tab.Screen
-        name="Signup"
-        component={RootStack}
-       
-      />
+   
         <Tab.Screen
         name="Profile"
+        component={Profile}
+        // listeners={() => ({
+        //   tabPress: (e) => {
+        //     e.preventDefault();
+        //     navigation.goBack();
+        //   },
+        // })}
+      />
+         <Tab.Screen
+        name="Back"
         component={RootStack}
-        listeners={() => ({
-          tabPress: (e) => {
-            e.preventDefault();
-            navigation.goBack();
-          },
-        })}
+       
       />
     
     </Tab.Navigator>

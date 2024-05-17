@@ -10,6 +10,7 @@ import {
 } from "react-native";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { ScrollView } from "react-native-gesture-handler";
+import { useNavigation } from "@react-navigation/native";
 
 const windowWidth = Dimensions.get("window").width;
 
@@ -27,9 +28,15 @@ export const Profile = (
     //   textsize
   }
 ) => {
+  const navigation=useNavigation()
   return (
     <ScrollView style={{ marginHorizontal: 20 }}>
     <View style={{ marginTop: 50 }}>
+    <Pressable onPress={()=>navigation.goBack()}>
+          <Text style={{ paddingTop: 20 , marginBottom:30 , paddingLeft:5}}>
+            <Ionicons name="arrow-back-outline" size={23} />
+          </Text>
+        </Pressable>
      <View style={{display:"flex",  flexDirection:"row"  , alignItems:"center"}}>
         <View>
         <Image

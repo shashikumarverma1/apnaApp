@@ -12,27 +12,33 @@ import {
 const windowWidth = Dimensions.get("window").width;
 const windowHeight = Dimensions.get("window").height;
 import { ScrollView } from "react-native-gesture-handler";
+import Ionicons from "@expo/vector-icons/Ionicons";
 export const Login = () => {
-const [userData, setUserData]=useState({
-  email:"",
-  password:""
-})
-useEffect(()=>{
- abc()
-},[])
-async function abc(){
-  let email=await AsyncStorage.getItem("email")
-  let password= await AsyncStorage.getItem("password")
-  setUserData({ ...userData , email, password})
-  console.log(email ,password )
-}
-  const handleLogin = () => {
-
-  };
+  const [userData, setUserData] = useState({
+    email: "",
+    password: "",
+  });
+  useEffect(() => {
+    abc();
+  }, []);
+  async function abc() {
+    let email = await AsyncStorage.getItem("email");
+    let password = await AsyncStorage.getItem("password");
+    setUserData({ ...userData, email, password });
+    console.log(email, password);
+  }
+  const handleLogin = () => {};
   const navigation = useNavigation();
+
+  // console.log()
   return (
     <ScrollView style={{ marginHorizontal: 20 }}>
       <View style={{ marginTop: 50 }}>
+        <Pressable onPress={()=>navigation.goBack()}>
+          <Text style={{ paddingTop: 20 }}>
+            <Ionicons name="arrow-back-outline" size={23} />
+          </Text>
+        </Pressable>
         <View style={{ marginBottom: 45 }}>
           <Text style={{ marginTop: 50, fontWeight: "800", fontSize: 30 }}>
             Sign in
@@ -64,7 +70,7 @@ async function abc(){
 
         <TextInput
           style={styles.input}
-          onChangeText={(e)=>setUserData({...userData , email:e})}
+          onChangeText={(e) => setUserData({ ...userData, email: e })}
           value={userData.email}
           placeholder="Enter your email"
         />
@@ -81,7 +87,7 @@ async function abc(){
         </Text>
         <TextInput
           style={styles.input}
-          onChangeText={(e)=>setUserData({...userData , password:e})}
+          onChangeText={(e) => setUserData({ ...userData, password: e })}
           value={userData.password}
           secureTextEntry={true}
           placeholder="Enter your password"
