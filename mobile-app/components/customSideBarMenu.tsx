@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import {
   Text,
   Pressable,
@@ -15,6 +15,9 @@ const CustomSidebarMenu = ({ navigation }: { navigation: any }) => {
   const logout = async () => {
     AsyncStorage.clear();
   };
+  useEffect(()=>{
+    logout()
+  },[])
   return (
     <SafeAreaView style={{ flex: 1 }}>
       <ScrollView style={{marginTop:50}}>
@@ -90,6 +93,20 @@ const CustomSidebarMenu = ({ navigation }: { navigation: any }) => {
             ]}
           >
             close
+          </Text>
+        </Pressable>
+        <Pressable
+          style={styles.button}
+          onPress={async() =>logout() }
+        >
+          <Text
+            style={[
+              styles.subheading,
+              styles.subHeadingBold,
+              { color: "red", },
+            ]}
+          >
+            Logout
           </Text>
         </Pressable>
       </ScrollView>

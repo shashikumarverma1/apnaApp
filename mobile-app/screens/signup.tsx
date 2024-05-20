@@ -15,49 +15,55 @@ import { ScrollView } from "react-native-gesture-handler";
 const windowWidth = Dimensions.get("window").width;
 const windowHeight = Dimensions.get("window").height;
 export const Signup = () => {
-const [useData, setUserData]=useState({
-  name:"",
-  email:"",
-  mobile:"",
-  password:""
-})
+  const [useData, setUserData] = useState({
+    name: "",
+    email: "",
+    mobile: "",
+    password: "",
+  });
   const navigation: any = useNavigation();
-  
-  console.log(useData , "useData")
-  const signUpHandle=async()=>{
-    await AsyncStorage.setItem('name',useData.name);
-    await AsyncStorage.setItem('email',useData.email);
-    await AsyncStorage.setItem('mobile',useData.mobile);
-    await AsyncStorage.setItem('password',useData.password);
-    navigation.navigate("Login")
-    return
-    if(!useData.name) {alert("please add name")
-      return
-    }
-    if(!useData.mobile) {alert("please add mobile") 
-      return}
-    if(!useData.email) {alert("please add email")
-      return
-    }
-    if(!useData.password){alert("please add password")
-      return
-    }
-    let name=await AsyncStorage.getItem("name")
-    console.log(name)
-    if(!name){
-  await AsyncStorage.setItem('name',useData.name);
-  await AsyncStorage.setItem('email',useData.email);
-  await AsyncStorage.setItem('mobile',useData.mobile);
-  await AsyncStorage.setItem('password',useData.password);
-    }else{
-      alert("Already user please login")
-    }
 
-  }
+  console.log(useData, "useData");
+  
+  const signUpHandle = async () => {
+    await AsyncStorage.setItem("name", useData.name);
+    await AsyncStorage.setItem("email", useData.email);
+    await AsyncStorage.setItem("mobile", useData.mobile);
+    await AsyncStorage.setItem("password", useData.password);
+    // navigation.navigate("Login");
+    navigation.navigate("Home")
+    return;
+    if (!useData.name) {
+      alert("please add name");
+      return;
+    }
+    if (!useData.mobile) {
+      alert("please add mobile");
+      return;
+    }
+    if (!useData.email) {
+      alert("please add email");
+      return;
+    }
+    if (!useData.password) {
+      alert("please add password");
+      return;
+    }
+    let name = await AsyncStorage.getItem("name");
+    console.log(name);
+    if (!name) {
+      await AsyncStorage.setItem("name", useData.name);
+      await AsyncStorage.setItem("email", useData.email);
+      await AsyncStorage.setItem("mobile", useData.mobile);
+      await AsyncStorage.setItem("password", useData.password);
+    } else {
+      alert("Already user please login");
+    }
+  };
   return (
     <ScrollView style={{ marginHorizontal: 20 }}>
       <View style={{ marginTop: 50 }}>
-      <Pressable onPress={()=>navigation.goBack()}>
+        <Pressable onPress={() => navigation.goBack()}>
           <Text style={{ paddingTop: 20 }}>
             <Ionicons name="arrow-back-outline" size={23} />
           </Text>
@@ -93,7 +99,7 @@ const [useData, setUserData]=useState({
 
         <TextInput
           style={styles.input}
-          onChangeText={(e)=>setUserData({...useData , name:e})}
+          onChangeText={(e) => setUserData({ ...useData, name: e })}
           value={useData.name}
           placeholder="Enter your name"
         />
@@ -111,7 +117,7 @@ const [useData, setUserData]=useState({
 
         <TextInput
           style={styles.input}
-          onChangeText={(e)=>setUserData({...useData , email:e.trim()})}
+          onChangeText={(e) => setUserData({ ...useData, email: e.trim() })}
           value={useData.email}
           placeholder="Enter your email"
         />
@@ -129,7 +135,7 @@ const [useData, setUserData]=useState({
 
         <TextInput
           style={styles.input}
-          onChangeText={(e)=>setUserData({...useData , mobile:e})}
+          onChangeText={(e) => setUserData({ ...useData, mobile: e })}
           value={useData.mobile}
           placeholder="Enter your mobile no."
         />
@@ -146,7 +152,7 @@ const [useData, setUserData]=useState({
         </Text>
         <TextInput
           style={styles.input}
-          onChangeText={(e)=>setUserData({...useData , password:e.trim()})}
+          onChangeText={(e) => setUserData({ ...useData, password: e.trim() })}
           value={useData.password}
           secureTextEntry={true}
           placeholder="Enter your password"
@@ -175,14 +181,27 @@ const [useData, setUserData]=useState({
             <Text style={{ color: "#ffff", fontWeight: "800" }}>Signup</Text>
           </Pressable>
         </View>
-        <View style={{display:"flex" , justifyContent:"center" , flexDirection:"row" , marginTop:windowHeight / 5.5}}>
-          <Text style={{color:"grey", fontSize:15 , fontWeight:"500"}}>Already have account ? </Text>
-         <Pressable onPress={()=> {
-          console.log("signin")
-          navigation.navigate("Login")
-          }}>
-         <Text style={{color:"blue" , fontSize:15 , fontWeight:"500"}}>Signin</Text>
-         </Pressable>
+        <View
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            flexDirection: "row",
+            marginTop: windowHeight / 8.2,
+          }}
+        >
+          <Text style={{ color: "grey", fontSize: 15, fontWeight: "500" }}>
+            Already have account ?{" "}
+          </Text>
+          <Pressable
+            onPress={() => {
+              console.log("signin");
+              navigation.navigate("Login");
+            }}
+          >
+            <Text style={{ color: "blue", fontSize: 15, fontWeight: "500" }}>
+              Signin
+            </Text>
+          </Pressable>
         </View>
       </View>
     </ScrollView>

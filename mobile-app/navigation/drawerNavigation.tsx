@@ -35,13 +35,13 @@ function DraweNavigation() {
       }}
       drawerContent={(props) => <CustomSidebarMenu {...props} />}
     >
-      {userData ? (
+      {!userData.email ? (
         <Drawer.Screen name="BottomTabs" component={BottomTabs} />
       ) : (
-        <Drawer.Screen name="Signup" component={Signup} />
+        <Drawer.Screen name="Login" component={Login} />
       )}
-   <Drawer.Screen name="Login" component={Login} />
-   {/* <Drawer.Screen name="Signup" component={Signup} /> */}
+  
+   <Drawer.Screen name="Signup" component={Signup} />
   
     </Drawer.Navigator>
   );

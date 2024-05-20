@@ -27,7 +27,13 @@ export const Login = () => {
     setUserData({ ...userData, email, password });
     console.log(email, password);
   }
-  const handleLogin = () => {};
+  const signUpHandle = () => {
+    console.log(userData)
+    if(!userData.email || !userData.password){
+      return 
+    }
+    navigation.navigate("Home")
+  };
   const navigation = useNavigation();
 
   // console.log()
@@ -111,7 +117,7 @@ export const Login = () => {
               borderWidth: 1,
               borderColor: "grey",
             }}
-            // onPress={() => signUpHandle()}
+            onPress={() => signUpHandle()}
           >
             <Text style={{ color: "#ffff", fontWeight: "800" }}>Signin</Text>
           </Pressable>
@@ -121,7 +127,8 @@ export const Login = () => {
             display: "flex",
             justifyContent: "center",
             flexDirection: "row",
-            marginTop: windowHeight / 2.5,
+            marginTop: windowHeight / 2.8
+            ,
           }}
         >
           <Text style={{ color: "grey", fontSize: 15, fontWeight: "500" }}>
