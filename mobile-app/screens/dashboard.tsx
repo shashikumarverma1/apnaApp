@@ -14,17 +14,24 @@ import React from "react";
 import { JobCard } from "../components/jobCard";
 import { HorizontalCard } from "../components/horizontalCard";
 import { FilterModal } from "../components/filterModal";
-
+import experience from "../data/experience";
+import { DatePosted } from "../data/datePosted";
+import { department } from "../data/department";
+import { distance } from "../data/distance";
+import { salary } from "../data/salary";
+import { sortBy } from "../data/sortBy";
+import { workMode } from "../data/workMode";
+import { workShift } from "../data/workShift";
+import { workType } from "../data/workType";
 export const Dashboard = ({ navigation }) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-const [search , setSearch]=useState("")
+  const [search, setSearch] = useState("");
   const windowWidth = Dimensions.get("window").width;
-  const handleLogin = () => {
-    // Handle login logic here
-    console.log("Username:", username);
-    console.log("Password:", password);
-  };
+  const [data, setData] = useState(null);
+
+  const [modalVisible, setModalVisible] = useState(false);
+  const [selectedFilterText, setSelectedFilterText] = useState("");
 
   return (
     <ScrollView style={{ marginTop: 50 }}>
@@ -36,12 +43,15 @@ const [search , setSearch]=useState("")
           alignItems: "center",
           marginHorizontal: 15,
           // backgroundColor: "aqua",
-          padding:6, marginBottom:5
+          padding: 6,
+          marginBottom: 5,
         }}
       >
-        <View style={{display:"flex", flexDirection:"row"}}>
-          <Text style={{fontWeight:"600" , fontSize:25}}>apna</Text>
-          <Text style={{fontWeight:"600" , fontSize:25 , color:'green'}}>Jobs</Text>
+        <View style={{ display: "flex", flexDirection: "row" }}>
+          <Text style={{ fontWeight: "600", fontSize: 25 }}>apna</Text>
+          <Text style={{ fontWeight: "600", fontSize: 25, color: "green" }}>
+            Jobs
+          </Text>
         </View>
         <View
           style={{
@@ -266,7 +276,7 @@ const [search , setSearch]=useState("")
           { date: "Experience" },
           { date: "sort-by" },
         ].map((e) => (
-          <View
+          <Pressable
             style={{
               display: "flex",
               flexDirection: "row",
@@ -281,15 +291,54 @@ const [search , setSearch]=useState("")
               borderWidth: 0.5,
               alignItems: "center",
             }}
+            onPress={() => {
+              
+              if (selectedFilterText == "Date-posted") {
+                setData(DatePosted);
+              }
+              if (selectedFilterText == "Distance") {
+                setData(distance);
+              }
+              if (selectedFilterText == "Salary") {
+                setData(salary);
+              }
+              if (selectedFilterText == "work-mode") {
+                setData(workMode);
+              }
+              if (selectedFilterText == "work-type") {
+                setData(workType);
+              }
+              if (selectedFilterText == "work-shift") {
+                setData(workShift);
+              }
+              if (selectedFilterText == "Department") {
+                setData(department);
+              }
+              if (selectedFilterText == "Experience") {
+                setData(experience);
+              }
+              if (selectedFilterText == "sort-by") {
+                setData(sortBy);
+              }
+              setSelectedFilterText(e.date)
+              console.log(data)
+              // setModalVisible(true)
+            }}
           >
             <Text>{e.date}</Text>
             <Text>
               {" "}
               <Ionicons name="chevron-down-outline" size={20} color="black" />
             </Text>
-          </View>
+          </Pressable>
         ))}
       </ScrollView>
+      <FilterModal
+        modalVisible={modalVisible}
+        setModalVisible={setModalVisible}
+        selectedFilterText={selectedFilterText}  setSelectedFilterText={setSelectedFilterText}
+        data={data} setData ={setData}
+      />
       <JobCard />
     </ScrollView>
   );

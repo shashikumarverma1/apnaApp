@@ -26,9 +26,7 @@ export const JobDetails = () => {
 
   return (
     <>
-      <ScrollView>
-        <View style={{ marginTop: 50, marginHorizontal: 20 }}>
-          <View
+     <View
             style={{
               //   backgroundColor: "red",
               display: "flex",
@@ -36,6 +34,8 @@ export const JobDetails = () => {
               justifyContent: "space-between",
               alignItems: "center",
               paddingBottom: 15,
+              marginTop:50,
+             marginHorizontal: 20
             }}
           >
             <View>
@@ -76,6 +76,10 @@ export const JobDetails = () => {
               </Text>
             </View>
           </View>
+      <ScrollView>
+     
+        <View style={{  marginHorizontal: 20 }}>
+         
           <View
             style={{
               display: "flex",
