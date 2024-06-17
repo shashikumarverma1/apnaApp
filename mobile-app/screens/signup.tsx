@@ -23,7 +23,7 @@ export const Signup = () => {
   });
   const navigation: any = useNavigation();
 
-  console.log(useData, "useData");
+  // console.log(useData, "useData");
   
   const signUpHandle = async () => {
     await AsyncStorage.setItem("name", useData.name);
@@ -50,7 +50,7 @@ export const Signup = () => {
       return;
     }
     let name = await AsyncStorage.getItem("name");
-    console.log(name);
+    // console.log(name);
     if (!name) {
       await AsyncStorage.setItem("name", useData.name);
       await AsyncStorage.setItem("email", useData.email);
@@ -194,7 +194,7 @@ export const Signup = () => {
           </Text>
           <Pressable
             onPress={() => {
-              console.log("signin");
+              // console.log("signin");
               navigation.navigate("Login");
             }}
           >

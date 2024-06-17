@@ -195,7 +195,13 @@ export const Dashboard = ({ navigation }) => {
             </View>
           </View>
           <ScrollView horizontal showsHorizontalScrollIndicator={false}>
-            {[1, 1].map((e, i) => (
+            {[
+              {
+                title: "verify email",
+                description: " verify your email so HRs can reach out to you",
+              },
+              { title: "verify phone", description: " verify your phone so HRs can reach out to you" },
+            ].map((e, i) => (
               <View
                 key={i}
                 style={{
@@ -233,7 +239,7 @@ export const Dashboard = ({ navigation }) => {
                         maxWidth: 150,
                       }}
                     >
-                      verify your email so HRs can reach out to you
+                      {e.description}
                     </Text>
                     <Pressable>
                       <Text
@@ -251,7 +257,7 @@ export const Dashboard = ({ navigation }) => {
                           width: 90,
                         }}
                       >
-                        verify email
+                        {e.title}
                       </Text>
                     </Pressable>
                   </View>
@@ -275,7 +281,7 @@ export const Dashboard = ({ navigation }) => {
           { date: "Dipartment" },
           { date: "Experience" },
           { date: "sort-by" },
-        ].map((e , index) => (
+        ].map((e, index) => (
           <Pressable
             style={{
               display: "flex",
@@ -293,7 +299,6 @@ export const Dashboard = ({ navigation }) => {
             }}
             key={index}
             onPress={() => {
-              
               if (selectedFilterText == "Date-posted") {
                 setData(DatePosted);
               }
@@ -321,8 +326,8 @@ export const Dashboard = ({ navigation }) => {
               if (selectedFilterText == "sort-by") {
                 setData(sortBy);
               }
-              setSelectedFilterText(e.date)
-              console.log(data)
+              setSelectedFilterText(e.date);
+              // console.log(data)
               // setModalVisible(true)
             }}
           >
@@ -337,8 +342,10 @@ export const Dashboard = ({ navigation }) => {
       <FilterModal
         modalVisible={modalVisible}
         setModalVisible={setModalVisible}
-        selectedFilterText={selectedFilterText}  setSelectedFilterText={setSelectedFilterText}
-        data={data} setData ={setData}
+        selectedFilterText={selectedFilterText}
+        setSelectedFilterText={setSelectedFilterText}
+        data={data}
+        setData={setData}
       />
       <JobCard />
     </ScrollView>

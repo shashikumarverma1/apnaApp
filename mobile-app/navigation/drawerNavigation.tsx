@@ -23,9 +23,9 @@ function DraweNavigation() {
     let email=await AsyncStorage.getItem("email")
     let password= await AsyncStorage.getItem("password")
     setUserData({ ...userData , email, password})
-    console.log(email ,password )
+    // console.log(email ,password )
   }
-  console.log(userData , "email")
+  // console.log(userData , "email")
   return (
     <Drawer.Navigator
       screenOptions={{
@@ -35,7 +35,7 @@ function DraweNavigation() {
       }}
       drawerContent={(props) => <CustomSidebarMenu {...props} />}
     >
-      {!userData.email ? (
+      {true ? (
         <Drawer.Screen name="BottomTabs" component={BottomTabs} />
       ) : (
         <Drawer.Screen name="Login" component={Login} />

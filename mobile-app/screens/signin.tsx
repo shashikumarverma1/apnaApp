@@ -25,10 +25,10 @@ export const Login = () => {
     let email = await AsyncStorage.getItem("email");
     let password = await AsyncStorage.getItem("password");
     setUserData({ ...userData, email, password });
-    console.log(email, password);
+    // console.log(email, password);
   }
   const signUpHandle = () => {
-    console.log(userData)
+    // console.log(userData)
     if(!userData.email || !userData.password){
       return 
     }

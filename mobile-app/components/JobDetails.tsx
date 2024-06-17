@@ -24,10 +24,10 @@ export const JobDetails = () => {
   const windowWidth = Dimensions.get("window").width;
   const handleLogin = () => {
     // Handle login logic here
-    console.log("Username:", username);
-    console.log("Password:", password);
+    // console.log("Username:", username);
+    // console.log("Password:", password);
   };
-console.log(JobDetailsData[3])
+// console.log(JobDetailsData[3])
   return (
     <>
      <View

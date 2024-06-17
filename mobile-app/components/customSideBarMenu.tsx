@@ -6,6 +6,8 @@ import {
   TouchableOpacity,
   Image,
   Alert,
+  View,
+  Share,
 } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { SafeAreaView } from "react-native-safe-area-context";
@@ -15,69 +17,81 @@ const CustomSidebarMenu = ({ navigation }: { navigation: any }) => {
   const logout = async () => {
     AsyncStorage.clear();
   };
-  useEffect(()=>{
-    logout()
-  },[])
+  const onShare = async () => {
+    try {
+      const result = await Share.share({
+        message: `Check out this amazing app: https://play.google.com/store/apps/details?id=com.ssfindia`,
+      });
+      // https://play.google.com/store/apps/details?id=com.ssfindia
+      if (result.action === Share.sharedAction) {
+        if (result.activityType) {
+          // shared with activity type of result.activityType
+        } else {
+          // shared
+        }
+      } else if (result.action === Share.dismissedAction) {
+        // dismissed
+      }
+    } catch (error: any) {
+      Alert.alert(error.message);
+    }
+  };
   return (
     <SafeAreaView style={{ flex: 1 }}>
-      <ScrollView style={{marginTop:50}}>
+      <ScrollView style={{ marginTop: 50 }}>
         <Pressable
           style={styles.button}
           onPress={() => {
             navigation.navigate("Home");
           }}
         >
-          <Text style={[styles.subheading, styles.subHeadingBold]}>
-          Home
-          </Text>
+          <View style={{ display: "flex", flexDirection: "row" }}>
+            <Text style={styles.icon}>
+              <Ionicons name="home" size={20} color="black" />
+            </Text>
+            <Text style={styles.heading}>Home</Text>
+          </View>
         </Pressable>
-
-      
-
         <Pressable
           style={styles.button}
           onPress={() => {
-            console.log("profile");
             navigation.navigate("Profile");
           }}
         >
-          <Text style={[styles.subheading, styles.subHeadingBold]}>
-            Profile
-          </Text>
-        </Pressable>
-        <Pressable style={styles.button} onPress={logout}>
-          <Text
-            style={[styles.subheading, styles.subHeadingBold, ]}
-          >
-            Log-out
-          </Text>
-        </Pressable>
-        <Pressable
-          style={styles.button}
-          onPress={() => navigation.navigate("JobDetails")}
-        >
-          <Text
-            style={[styles.subheading, styles.subHeadingBold,]}
-          >
-            JobDetails
-          </Text>
+          <View style={{ display: "flex", flexDirection: "row" }}>
+            <Text style={styles.icon}>
+              <Ionicons name="person-circle" size={20} color="black" />
+            </Text>
+            <Text style={styles.heading}>Profile</Text>
+          </View>
         </Pressable>
         <Pressable
           style={styles.button}
           onPress={() => {
-            navigation.navigate("MainScreen");
+            onShare()
           }}
         >
-          <Text
-            style={[
-              styles.subheading,
-              styles.subHeadingBold,
-            
-            ]}
-          >
-            MainScreen
-          </Text>
+          <View style={{ display: "flex", flexDirection: "row" }}>
+            <Text style={styles.icon}>
+              <Ionicons name="share-social" size={20} color="black" />
+            </Text>
+            <Text style={styles.heading}>Share</Text>
+          </View>
         </Pressable>
+        <Pressable
+          style={styles.button}
+          onPress={() => {
+            navigation.navigate("Home");
+          }}
+        >
+          <View style={{ display: "flex", flexDirection: "row" }}>
+            <Text style={styles.icon}>
+              <Ionicons name="star" size={20} color="black" />
+            </Text>
+            <Text style={styles.heading}>Rate us</Text>
+          </View>
+        </Pressable>
+
         <Pressable
           style={styles.button}
           onPress={() => {
@@ -87,8 +101,7 @@ const CustomSidebarMenu = ({ navigation }: { navigation: any }) => {
         >
           <Text
             style={[
-              styles.subheading,
-              styles.subHeadingBold,
+              styles.heading,
               { color: "red", textAlign: "right", paddingLeft: 200 },
             ]}
           >
@@ -97,17 +110,16 @@ const CustomSidebarMenu = ({ navigation }: { navigation: any }) => {
         </Pressable>
         <Pressable
           style={styles.button}
-          onPress={async() =>logout() }
+          onPress={() => {
+            logout()
+          }}
         >
-          <Text
-            style={[
-              styles.subheading,
-              styles.subHeadingBold,
-              { color: "red", },
-            ]}
-          >
-            Logout
-          </Text>
+          <View style={{ display: "flex", flexDirection: "row" }}>
+            <Text style={styles.icon}>
+              <Ionicons name="log-out" size={20} color="black" />
+            </Text>
+            <Text style={styles.heading}>Logout</Text>
+          </View>
         </Pressable>
       </ScrollView>
     </SafeAreaView>
@@ -120,33 +132,17 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
   },
-  heading: {
-    padding: 8,
-    fontWeight: "800",
-    backgroundColor: "#ffff",
-    fontSize: 17,
-    paddingLeft: 15,
-    paddingVertical: 10,
-  },
-  subheading: { paddingLeft: 10, backgroundColor: "#fff", fontSize: 15 },
-  subheadingmargin: {
-    paddingLeft: 20,
-  },
-  subHeadingBold: {
+  icon: {
     fontWeight: "600",
     fontSize: 15,
     paddingVertical: 5,
-    paddingLeft:25
+    paddingLeft: 25,
   },
-  subheadingBG: {
-    paddingLeft: 30,
-    backgroundColor: "#fffff",
-  },
-  icon_right: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
-    paddingRight: 16,
+  heading: {
+    fontWeight: "600",
+    fontSize: 15,
+    paddingVertical: 5,
+    paddingLeft: 20,
   },
 });
 export default CustomSidebarMenu;

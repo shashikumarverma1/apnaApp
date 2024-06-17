@@ -37,7 +37,7 @@ function BottomTabs() {
         tabBarInactiveTintColor: "gray",
       })}
     >
-      <Tab.Screen name="Job" component={Dashboard} />
+      <Tab.Screen name="Job" component={RootStack} />
       {/* <Tab.Screen name="JobDetails" component={JobDetails} /> */}
       <Tab.Screen
         name="Menu"
