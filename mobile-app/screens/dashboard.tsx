@@ -275,7 +275,7 @@ export const Dashboard = ({ navigation }) => {
           { date: "Dipartment" },
           { date: "Experience" },
           { date: "sort-by" },
-        ].map((e) => (
+        ].map((e , index) => (
           <Pressable
             style={{
               display: "flex",
@@ -291,6 +291,7 @@ export const Dashboard = ({ navigation }) => {
               borderWidth: 0.5,
               alignItems: "center",
             }}
+            key={index}
             onPress={() => {
               
               if (selectedFilterText == "Date-posted") {

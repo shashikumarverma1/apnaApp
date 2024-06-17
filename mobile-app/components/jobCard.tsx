@@ -13,6 +13,9 @@ import Ionicons from "@expo/vector-icons/Ionicons";
 import React from "react";
 import { useNavigation } from "@react-navigation/native";
 const windowWidth = Dimensions.get("window").width;
+import { Location } from "../data/location";
+import { Company } from "../data/company";
+import { JobRoll } from "../data/JobRoll";
 export const JobCard = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -108,9 +111,10 @@ export const JobCard = () => {
                         fontSize: 20,
                         color: "grey",
                         paddingLeft: 10,
+                        marginBottom:3
                       }}
                     >
-                      Softwere Engineer
+                      {JobRoll[(Math.random(2)*10).toFixed(0)]?.name}
                     </Text>
                     <Text
                       style={{
@@ -121,7 +125,7 @@ export const JobCard = () => {
                         marginTop: -5,
                       }}
                     >
-                      apple
+                        {Company[(Math.random(2)*10).toFixed(0)]?.name}
                     </Text>
                   </View>
                 </View>
@@ -170,7 +174,7 @@ export const JobCard = () => {
                     paddingLeft: 10,
                   }}
                 >
-                  Lucknow
+                  {Location[(Math.random(2)*10).toFixed(0)]?.name}
                 </Text>
               </View>
               <View
@@ -250,7 +254,7 @@ export const JobCard = () => {
                       paddingLeft: 2,
                     }}
                   >
-                    Min 1 year ex.
+                    Min {(Math.random(2)*10).toFixed(0)} year ex.
                   </Text>
                 </View>
               </View>

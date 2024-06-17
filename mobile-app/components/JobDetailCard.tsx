@@ -3,7 +3,7 @@ import { View, Text , StyleSheet, Dimensions } from "react-native"
 import Ionicons from "@expo/vector-icons/Ionicons";
 const windowWidth = Dimensions.get("window").width;
 
-export const JobDetailCard=({tittle , data})=>{
+export const JobDetailCard=({tittle ,title2, data})=>{
     return (
      <View style={{display:"flex" , flexDirection:"row" , justifyContent:'center'}}>
            <View 
@@ -27,9 +27,13 @@ export const JobDetailCard=({tittle , data})=>{
           }}
         >
         <Text style={styles.tittle}>{tittle}</Text>
+
+         {
+          title2 && <Text style={styles.tittle2}>{title2.slice(0,290)}...</Text>
+         }
       {
         data.map((e , index)=>{
-            console.log(e)
+            // console.log(e)
             return (
                 <View style={{display:"flex" , flexDirection:"row",marginBottom:5}} key={index}>
                 <View>
@@ -68,5 +72,6 @@ const styles = StyleSheet.create({
       paddingHorizontal: 10,
       marginBottom: 20,
     },
-    tittle:{fontSize:15 , fontWeight:"500" ,marginBottom:5, marginTop:5}
+    tittle:{fontSize:15 , fontWeight:"500" ,marginBottom:5, marginTop:5},
+    tittle2:{fontSize:15 , fontWeight:"400" ,marginBottom:5, marginTop:5 ,textAlign:"justify"}
   });

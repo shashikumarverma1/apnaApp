@@ -12,6 +12,10 @@ import { ScrollView } from "react-native-gesture-handler";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import React from "react";
 import { JobDetailCard } from "./JobDetailCard";
+import { JobDetailsData } from "../data/jobDetails";
+import { Company } from "../data/company";
+import { JobRoll } from "../data/JobRoll";
+import { Location } from "../data/location";
 const windowWidth = Dimensions.get("window").width;
 export const JobDetails = () => {
   const [username, setUsername] = useState("");
@@ -23,7 +27,7 @@ export const JobDetails = () => {
     console.log("Username:", username);
     console.log("Password:", password);
   };
-
+console.log(JobDetailsData[3])
   return (
     <>
      <View
@@ -100,9 +104,10 @@ export const JobDetails = () => {
                   fontSize: 20,
                   color: "grey",
                   paddingLeft: 10,
+                  marginBottom:3
                 }}
               >
-                Softwere Engineer
+                {JobRoll[(Math.random(2)*10).toFixed(0)]?.name}
               </Text>
               <Text
                 style={{
@@ -113,7 +118,7 @@ export const JobDetails = () => {
                   marginTop: -5,
                 }}
               >
-                apple
+                {Company[(Math.random(2)*10).toFixed(0)]?.name}
               </Text>
             </View>
           </View>
@@ -137,7 +142,7 @@ export const JobDetails = () => {
                 paddingLeft: 10,
               }}
             >
-              Lucknow
+            {Location[(Math.random(2)*10).toFixed(0)]?.name}
             </Text>
           </View>
           <View
@@ -182,7 +187,7 @@ export const JobDetails = () => {
               }}
             >
               <Text>fixed</Text>
-              <Text>₹ 7000-8000</Text>
+              <Text>₹ {(Math.random(5)*100000).toFixed(0)}</Text>
             </View>
             <View
               style={{
@@ -204,7 +209,7 @@ export const JobDetails = () => {
               }}
             >
               <Text>Average Incentives</Text>
-              <Text>₹ 1000</Text>
+              <Text>₹ {(Math.random(5)*10000).toFixed(0)}</Text>
             </View>
             <View
               style={{
@@ -227,7 +232,7 @@ export const JobDetails = () => {
               }}
             >
               <Text>Earning Potential</Text>
-              <Text> ₹ 9000</Text>
+              <Text> ₹  - - - -</Text>
             </View>
 
             <View
@@ -275,7 +280,7 @@ export const JobDetails = () => {
                     paddingVertical: 3,
                   }}
                 >
-                  14 application
+                  {(Math.random(2)*1000).toFixed(0)} application
                 </Text>
 
                 <Text style={{ fontSize: 14 }}>
@@ -289,115 +294,35 @@ export const JobDetails = () => {
 
         <JobDetailCard
           tittle="Job description"
-          data={[
-            {
-              icon: "call",
-              heading: "Department",
-              subheading: "Engineering & Networks",
-            },
-            {
-              icon: "call",
-              heading: "Department",
-              subheading: "Engineering & Networks",
-            },
-            {
-              icon: "call",
-              heading: "Department",
-              subheading: "Engineering & Networks",
-            },
-          ]}
+          title2= {JobDetailsData[0].description}
+          data={[]}
         />
         <JobDetailCard
           tittle="Job role"
-          data={[
-            {
-              icon: "call",
-              heading: "Department",
-              subheading: "Engineering & Networks",
-            },
-            {
-              icon: "call",
-              heading: "Department",
-              subheading: "Engineering & Networks",
-            },
-            {
-              icon: "call",
-              heading: "Department",
-              subheading: "Engineering & Networks",
-            },
-          ]}
+          title2=''
+          data={
+            JobDetailsData[1]?.role
+        }
         />
 
         <JobDetailCard
           tittle="Job requirement"
-          data={[
-            {
-              icon: "call",
-              heading: "Experience",
-              subheading: "Any experience",
-            },
-            {
-              icon: "call",
-              heading: "Education",
-              subheading: "10th or Below 10th",
-            },
-            {
-              icon: "call",
-              heading: "Past role/category experience",
-              subheading:
-                "IT Support, Hardware, IT Infrastructure Service, IT Network",
-            },
-            {
-              icon: "call",
-              heading: "English level",
-              subheading: "NO english Required",
-            },
-            {
-              icon: "call",
-              heading: "Gender",
-              subheading: "male",
-            },
-          ]}
+            title2=''
+          data={JobDetailsData[2]?.requirement
+        }
         />
         <JobDetailCard
           tittle="Interview Details"
-          data={[
-            {
-              icon: "call",
-              heading: "Department",
-              subheading: "Engineering & Networks",
-            },
-            {
-              icon: "call",
-              heading: "Department",
-              subheading: "Engineering & Networks",
-            },
-            {
-              icon: "call",
-              heading: "Department",
-              subheading: "Engineering & Networks",
-            },
-          ]}
+            title2=''
+          data={ JobDetailsData[3].interview
+            
+        }
         />
         <JobDetailCard
           tittle="About company"
-          data={[
-            {
-              icon: "call",
-              heading: "Department",
-              subheading: "Engineering & Networks",
-            },
-            {
-              icon: "call",
-              heading: "Department",
-              subheading: "Engineering & Networks",
-            },
-            {
-              icon: "call",
-              heading: "Department",
-              subheading: "Engineering & Networks",
-            },
-          ]}
+            title2=''
+          data={ JobDetailsData[4].about
+        }
         />
 
         <View
