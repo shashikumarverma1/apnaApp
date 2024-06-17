@@ -49,7 +49,7 @@ export const Profile = (
               style={{ width: 50, height: 50, borderRadius: 50 }}
               resizeMode="cover"
               source={{
-                uri: "https://reactnative.dev/img/tiny_logo.png",
+                uri: "https://avatars.githubusercontent.com/u/103879105?s=48&v=4",
               }}
             />
           </View>
@@ -68,7 +68,7 @@ export const Profile = (
         </View>
         <View style={{ marginTop: 20 }}>
           {[
-            { title: "Name", icon: "person-circle", description: "shashi kumar verma" },
+          
             { title: "Email", icon: "mail", description: "shashikumarverma1996@gmail.com" },
             { title: "Phone", icon: "call", description: "7007414506" },
           ].map((e, index) => {

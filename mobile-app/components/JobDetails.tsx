@@ -7,6 +7,8 @@ import {
   StyleSheet,
   Dimensions,
   Image,
+  Share,
+  Alert,
 } from "react-native";
 import { ScrollView } from "react-native-gesture-handler";
 import Ionicons from "@expo/vector-icons/Ionicons";
@@ -16,18 +18,36 @@ import { JobDetailsData } from "../data/jobDetails";
 import { Company } from "../data/company";
 import { JobRoll } from "../data/JobRoll";
 import { Location } from "../data/location";
+import { useNavigation } from "@react-navigation/native";
 const windowWidth = Dimensions.get("window").width;
 export const JobDetails = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-
+  const navigation = useNavigation();
   const windowWidth = Dimensions.get("window").width;
   const handleLogin = () => {
-    // Handle login logic here
-    // console.log("Username:", username);
-    // console.log("Password:", password);
+  
   };
-// console.log(JobDetailsData[3])
+
+const onShare = async () => {
+  try {
+    const result = await Share.share({
+      message: `Check out this amazing app: https://play.google.com/store/apps/details?id=com.ssfindia`,
+    });
+    // https://play.google.com/store/apps/details?id=com.ssfindia
+    if (result.action === Share.sharedAction) {
+      if (result.activityType) {
+        // shared with activity type of result.activityType
+      } else {
+        // shared
+      }
+    } else if (result.action === Share.dismissedAction) {
+      // dismissed
+    }
+  } catch (error: any) {
+    Alert.alert(error.message);
+  }
+};
   return (
     <>
      <View
@@ -54,6 +74,7 @@ export const JobDetails = () => {
                 alignItems: "center",
               }}
             >
+              <Pressable onPress={()=>onShare()}>
               <View
                 style={{
                   display: "flex",
@@ -69,6 +90,8 @@ export const JobDetails = () => {
                 </Text>
                 <Text style={{color:"#f7f7f0" , fontSize:15}}> Share </Text>
               </View>
+              </Pressable>
+             
               {/* <ion-icon name="ellipsis-vertical-outline"></ion-icon> */}
               <Text>
                 {" "}
@@ -366,10 +389,20 @@ export const JobDetails = () => {
             justifyContent: "center",
             alignItems: "center",
             borderRadius: 5,
-            // borderWidth: 1,
-            // borderColor: "white",
+          
           }}
-          // onPress={() => signUpHandle()}
+          onPress={() => { 
+          
+            Alert.alert('Alert', 'Application submitted successfully', [
+              {
+                text: 'Cancel',
+                onPress: () => console.log('Cancel Pressed'),
+                style: 'cancel',
+              },
+              {text: 'OK', onPress: () => navigation.navigate("Home")},
+            ]);
+            
+          }}
         >
           <Text style={{ color: "white", fontWeight: "800" }}>
             Apply for Job

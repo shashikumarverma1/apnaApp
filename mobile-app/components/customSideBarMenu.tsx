@@ -14,9 +14,12 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import { SafeAreaView } from "react-native-safe-area-context";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { ScrollView } from "react-native-gesture-handler";
+import { GlobalInfo } from "../context/userDetails";
 const CustomSidebarMenu = ({ navigation }: { navigation: any }) => {
+  const {userDetails, setUserDetails } = useContext(GlobalInfo)
   const logout = async () => {
     AsyncStorage.clear();
+    setUserDetails(false)
   };
   const onShare = async () => {
     try {
@@ -92,23 +95,19 @@ const CustomSidebarMenu = ({ navigation }: { navigation: any }) => {
             <Text style={styles.heading}>Rate us</Text>
           </View>
         </Pressable>
-
         <Pressable
           style={styles.button}
-          onPress={() => {
-            // console.log("click" , navigation)
-            navigation.closeDrawer();
-          }}
+          onPress={async() => {
+            navigation.navigate("Pay");          }}
         >
-          <Text
-            style={[
-              styles.heading,
-              { color: "red", textAlign: "right", paddingLeft: 200 },
-            ]}
-          >
-            close
-          </Text>
+          <View style={{ display: "flex", flexDirection: "row" }}>
+            <Text style={styles.icon}>
+              <Ionicons name="arrow-up-circle" size={20} color="black" />
+            </Text>
+            <Text style={styles.heading}>Premium Services</Text>
+          </View>
         </Pressable>
+       
         <Pressable
           style={styles.button}
           onPress={() => {
@@ -121,6 +120,21 @@ const CustomSidebarMenu = ({ navigation }: { navigation: any }) => {
             </Text>
             <Text style={styles.heading}>Logout</Text>
           </View>
+        </Pressable>
+        <Pressable
+          style={styles.button}
+          onPress={() => {
+            navigation.closeDrawer();
+          }}
+        >
+          <Text
+            style={[
+              styles.heading,
+              { color: "red", textAlign: "right", paddingLeft: 200 },
+            ]}
+          >
+            close
+          </Text>
         </Pressable>
       </ScrollView>
     </SafeAreaView>

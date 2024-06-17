@@ -33,7 +33,7 @@ export const JobDetailCard=({tittle ,title2, data})=>{
          }
       {
         data.map((e , index)=>{
-            // console.log(e)
+         
             return (
                 <View style={{display:"flex" , flexDirection:"row",marginBottom:5}} key={index}>
                 <View>

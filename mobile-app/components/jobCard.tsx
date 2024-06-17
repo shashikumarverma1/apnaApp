@@ -22,15 +22,13 @@ export const JobCard = () => {
 
   const windowWidth = Dimensions.get("window").width;
   const handleLogin = () => {
-    // Handle login logic here
-    console.log("Username:", username);
-    console.log("Password:", password);
+ 
   };
   const navigation=useNavigation()
 
   return (
     <ScrollView>
-      {[1, 1, 1, 1, 1, 1, 1, 1, 1].map((e, index) => {
+      {[1, 1, 1, 1, 1, 1, 1, 1, 1,1, 1, 1, 1, 1, 1, 1, 1, 1].map((e, index) => {
         return (
           <View
             style={{
@@ -101,7 +99,7 @@ export const JobCard = () => {
                   <Image
                     style={{ width: 20, height: 20 }}
                     source={{
-                      uri: "https://reactnative.dev/img/tiny_logo.png",
+                      uri: "https://www.freepnglogos.com/uploads/google-logo-png/google-logo-icon-png-transparent-background-osteopathy-16.png",
                     }}
                   />
                   <View>

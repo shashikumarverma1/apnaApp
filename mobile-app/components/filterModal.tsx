@@ -34,8 +34,6 @@ export const FilterModal = ({
   const windowWidth = Dimensions.get("window").width;
   const windowHeight = Dimensions.get("window").height;
   const [isSelected, setSelection] = useState(false);
-  
-  console.log(data, "data" , selectedFilterText , "selectedFilterText");
 
   return (
     <Modal
@@ -115,8 +113,7 @@ export const FilterModal = ({
               return (
                 <Pressable
                   onPress={() => {
-                    // console.log(experience, DatePosted, department, distance, experience, salary , sortBy , workMode , workShift , workType);
-                    console.log("ckc");
+              
                     if (e.date == "Date-posted") {
                       setData(DatePosted);
                     }

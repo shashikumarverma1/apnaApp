@@ -1,6 +1,6 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useNavigation } from "@react-navigation/native";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import {
   TextInput,
   View,
@@ -13,7 +13,9 @@ const windowWidth = Dimensions.get("window").width;
 const windowHeight = Dimensions.get("window").height;
 import { ScrollView } from "react-native-gesture-handler";
 import Ionicons from "@expo/vector-icons/Ionicons";
+import { GlobalInfo } from "../context/userDetails";
 export const Login = () => {
+  const { userDetails, setUserDetails } = useContext(GlobalInfo);
   const [userData, setUserData] = useState({
     email: "",
     password: "",
@@ -25,26 +27,22 @@ export const Login = () => {
     let email = await AsyncStorage.getItem("email");
     let password = await AsyncStorage.getItem("password");
     setUserData({ ...userData, email, password });
-    // console.log(email, password);
+
   }
   const signUpHandle = () => {
-    // console.log(userData)
-    if(!userData.email || !userData.password){
-      return 
+  
+    if (!userData.email || !userData.password) {
+      return;
     }
-    navigation.navigate("Home")
+    navigation.navigate("Home");
+    setUserDetails(true);
   };
   const navigation = useNavigation();
 
-  // console.log()
   return (
     <ScrollView style={{ marginHorizontal: 20 }}>
       <View style={{ marginTop: 50 }}>
-        <Pressable onPress={()=>navigation.goBack()}>
-          <Text style={{ paddingTop: 20 }}>
-            <Ionicons name="arrow-back-outline" size={23} />
-          </Text>
-        </Pressable>
+     
         <View style={{ marginBottom: 45 }}>
           <Text style={{ marginTop: 50, fontWeight: "800", fontSize: 30 }}>
             Sign in
@@ -122,13 +120,27 @@ export const Login = () => {
             <Text style={{ color: "#ffff", fontWeight: "800" }}>Signin</Text>
           </Pressable>
         </View>
+       <View style={{  display:"flex" , justifyContent:"center" , flexDirection:"row" ,}}>
+       <Pressable onPress={() => setUserDetails(true)}>
+          <Text
+            style={{
+              padding: 20,
+              color: "#0D88C3",
+              fontWeight: "600",
+              fontSize: 20,
+             textDecorationLine:"underline"
+            }}
+          >
+            Direct Login
+          </Text>
+        </Pressable>
+       </View>
         <View
           style={{
             display: "flex",
             justifyContent: "center",
             flexDirection: "row",
-            marginTop: windowHeight / 2.8
-            ,
+            marginTop: windowHeight / 3.3,
           }}
         >
           <Text style={{ color: "grey", fontSize: 15, fontWeight: "500" }}>

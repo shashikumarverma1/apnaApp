@@ -4,7 +4,7 @@ import { MainScreen } from '../components/scrollTopTab/mainScreen';
 import { Profile } from '../screens/profile';
 import { JobDetails } from '../components/JobDetails';
 import Pay from '../screens/paymentScreen';
-
+import { Notification } from '../screens/notification';
 
 
 
@@ -13,8 +13,9 @@ const Stack = createStackNavigator();
 function RootStack() {
   return (
     <Stack.Navigator screenOptions={{ animationEnabled: false, headerShown: false }}>
-       {/* <Stack.Screen name="Home" component={Dashboard} /> */}
+       <Stack.Screen name="Home" component={Dashboard} />
        <Stack.Screen name="Pay" component={Pay} />
+       <Stack.Screen name="Notification" component={Notification} />
        {/*  */}
       <Stack.Screen name="Signup" component={Signup} />
       <Stack.Screen name="Login" component={Login} />

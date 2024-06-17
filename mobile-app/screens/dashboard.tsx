@@ -68,10 +68,14 @@ export const Dashboard = ({ navigation }) => {
             {"   "}
             <Ionicons name="chatbubble-ellipses" size={18} color="black" />
           </Text>
-          <Text>
+          <Pressable    onPress={async() => {
+            navigation.navigate("Notification");          }}>
+  <Text>
             {"   "}
             <Ionicons name="notifications" size={18} color="black" />
           </Text>
+          </Pressable>
+        
           {/* <ion-icon name="notifications-outline"></ion-icon> */}
         </View>
       </View>
@@ -165,7 +169,7 @@ export const Dashboard = ({ navigation }) => {
               <Image
                 style={{ width: 20, height: 20 }}
                 source={{
-                  uri: "https://reactnative.dev/img/tiny_logo.png",
+                  uri: "https://avatars.githubusercontent.com/u/103879105?s=48&v=4",
                 }}
               />
               <View>
@@ -226,7 +230,7 @@ export const Dashboard = ({ navigation }) => {
                   <Image
                     style={{ width: 50, height: 50 }}
                     source={{
-                      uri: "https://reactnative.dev/img/tiny_logo.png",
+                      uri: "https://avatars.githubusercontent.com/u/103879105?s=48&v=4",
                     }}
                   />
                   <View style={{ paddingLeft: 5, display: "flex" }}>
@@ -327,7 +331,7 @@ export const Dashboard = ({ navigation }) => {
                 setData(sortBy);
               }
               setSelectedFilterText(e.date);
-              // console.log(data)
+           
               // setModalVisible(true)
             }}
           >

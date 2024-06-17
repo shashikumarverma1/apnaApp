@@ -7,11 +7,13 @@ import CustomSidebarMenu from "../components/customSideBarMenu";
 import { Dashboard, Login, Signup } from "../screens";
 import BottomTabs from "./bottomNavigation";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { GlobalInfo } from "../context/userDetails";
 
 
 const Drawer = createDrawerNavigator();
 
 function DraweNavigation() {
+  const {userDetails, setUserDetails } = useContext(GlobalInfo)
   const [userData, setUserData]=React.useState({
     email:"",
     password:""
@@ -23,9 +25,9 @@ function DraweNavigation() {
     let email=await AsyncStorage.getItem("email")
     let password= await AsyncStorage.getItem("password")
     setUserData({ ...userData , email, password})
-    // console.log(email ,password )
+
   }
-  // console.log(userData , "email")
+
   return (
     <Drawer.Navigator
       screenOptions={{
@@ -35,7 +37,7 @@ function DraweNavigation() {
       }}
       drawerContent={(props) => <CustomSidebarMenu {...props} />}
     >
-      {true ? (
+      {userDetails ? (
         <Drawer.Screen name="BottomTabs" component={BottomTabs} />
       ) : (
         <Drawer.Screen name="Login" component={Login} />

@@ -1,6 +1,6 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useNavigation } from "@react-navigation/native";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import {
   View,
   Text,
@@ -12,6 +12,7 @@ import {
 } from "react-native";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { ScrollView } from "react-native-gesture-handler";
+import { GlobalInfo } from "../context/userDetails";
 const windowWidth = Dimensions.get("window").width;
 const windowHeight = Dimensions.get("window").height;
 export const Signup = () => {
@@ -22,14 +23,13 @@ export const Signup = () => {
     password: "",
   });
   const navigation: any = useNavigation();
-
-  // console.log(useData, "useData");
-  
+  const {userDetails, setUserDetails } = useContext(GlobalInfo)
   const signUpHandle = async () => {
     await AsyncStorage.setItem("name", useData.name);
     await AsyncStorage.setItem("email", useData.email);
     await AsyncStorage.setItem("mobile", useData.mobile);
     await AsyncStorage.setItem("password", useData.password);
+    setUserDetails(true)
     // navigation.navigate("Login");
     navigation.navigate("Home")
     return;
@@ -50,7 +50,7 @@ export const Signup = () => {
       return;
     }
     let name = await AsyncStorage.getItem("name");
-    // console.log(name);
+  
     if (!name) {
       await AsyncStorage.setItem("name", useData.name);
       await AsyncStorage.setItem("email", useData.email);
@@ -80,7 +80,7 @@ export const Signup = () => {
               marginTop: 10,
             }}
           >
-            SIgn in forr next step Should you have any questions or require
+            SIgn in for next step Should you have any questions or require
             further information as you proceed, please do not hesitate to reach
             out to our support
           </Text>
@@ -181,12 +181,13 @@ export const Signup = () => {
             <Text style={{ color: "#ffff", fontWeight: "800" }}>Signup</Text>
           </Pressable>
         </View>
+       
         <View
           style={{
             display: "flex",
             justifyContent: "center",
             flexDirection: "row",
-            marginTop: windowHeight / 8.2,
+            marginTop: windowHeight / 9,
           }}
         >
           <Text style={{ color: "grey", fontSize: 15, fontWeight: "500" }}>
@@ -194,7 +195,6 @@ export const Signup = () => {
           </Text>
           <Pressable
             onPress={() => {
-              // console.log("signin");
               navigation.navigate("Login");
             }}
           >
