@@ -8,6 +8,7 @@ import {
   Alert,
   View,
   Share,
+  Linking,
 } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { SafeAreaView } from "react-native-safe-area-context";
@@ -80,8 +81,8 @@ const CustomSidebarMenu = ({ navigation }: { navigation: any }) => {
         </Pressable>
         <Pressable
           style={styles.button}
-          onPress={() => {
-            navigation.navigate("Home");
+          onPress={async() => {
+           await Linking.openURL('https://play.google.com/store/apps/details?id=com.pm.kisan.samman.nidhi.yojana');
           }}
         >
           <View style={{ display: "flex", flexDirection: "row" }}>
