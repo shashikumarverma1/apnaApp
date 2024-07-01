@@ -7,7 +7,6 @@ export default function App() {
   return (
     <ContextProvider>
   <NavigationContainer>
-     
      <DraweNavigation/>
   </NavigationContainer>
     </ContextProvider>
